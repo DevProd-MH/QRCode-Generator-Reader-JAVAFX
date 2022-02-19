@@ -23,10 +23,13 @@ import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -66,14 +69,22 @@ public class mainUIController implements Initializable {
     }
 
     @FXML
-    private void openLink() throws IOException {
+    private void openLink() {
+        String os = System.getProperty("os.name").toLowerCase();
         Runtime rt = Runtime.getRuntime();
-        String[] browsers = {"google-chrome", "firefox", "mozilla", "epiphany", "konqueror", "netscape", "opera", "links", "lynx"};
-        StringBuilder cmd = new StringBuilder();
-        for (int i = 0; i < browsers.length; i++)
-            if (i == 0) cmd.append(String.format("%s \"%s\"", browsers[i], url));
-            else cmd.append(String.format(" || %s \"%s\"", browsers[i], url));
-        rt.exec(new String[]{"sh", "-c", cmd.toString()});
+        String command = "";
+        if (os.contains("windows")) {
+            command = "rundll32 url.dll,FileProtocolHandler ";
+        } else if (os.contains("linux")) {
+            command = "xdg-open ";
+        } else if (os.contains("mac")) {
+            command = "open ";
+        }
+        try {
+            rt.exec(command + url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createQR() {
