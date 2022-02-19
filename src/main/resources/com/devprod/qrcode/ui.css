@@ -1,0 +1,38 @@
+.root {
+    -fx-background-color: #7882A4;
+}
+
+.label {
+    -fx-font-family: "JetBrains Mono Thin";
+    -fx-text-fill: #21325E;
+}
+
+.button {
+    -fx-text-fill: #F1E0AC;
+    -fx-border-color: #21325E;
+    -fx-border-width: 3;
+    -fx-background-color: #3E497A;
+}
+
+.text-field {
+    -fx-border-radius: 3px;
+    -fx-background-color: #3E497A;
+    -fx-border-color: #21325E;
+    -fx-border-width: 3;
+    -fx-text-fill: #D1D1D1;
+    -fx-prompt-text-fill: #7882A4;
+}
+
+.hyperlink {
+    -fx-border-color: transparent;
+    -fx-text-fill: #21325E;
+}
+
+.hyperlink:visited {
+    -fx-border-color: transparent;
+}
+
+.pane {
+    -fx-border-color: #21325E;
+    -fx-border-width: 5;
+}
